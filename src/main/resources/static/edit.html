@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Entry</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+</head>
+<body>
+<main class="container">
+    <h1>✏️ Edit Entry</h1>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="text" id="id" placeholder="Entry ID" />
+    <input type="text" id="title" placeholder="Title" />
+    <textarea id="content" placeholder="Content"></textarea>
+    <button onclick="updateEntry()">Update</button>
+    <a href="index.html">⬅ Back</a>
+</main>
+<script>
+    async function updateEntry() {
+        const id = document.getElementById("id").value;
+        const username = document.getElementById("username").value;
+        const updated = {
+            title: document.getElementById("title").value,
+            content: document.getElementById("content").value
+        };
+        await fetch(`http://localhost:9091/journal/id/${username}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updated)
+        });
+        alert('Entry updated!');
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>

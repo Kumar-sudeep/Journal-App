@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journal Entries</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+</head>
+<body>
+<main class="container">
+    <h1>📓 Journal</h1>
+    <input type="text" id="username" placeholder="Enter username" />
+    <button onclick="loadEntries()">Load Entries</button>
+    <section id="entries"></section>
+    <footer><a href="create.html">Create New Entry</a></footer>
+</main>
+<script>
+    async function loadEntries() {
+        const username = document.getElementById('username').value;
+        try {
+            const res = await fetch(`http://localhost:9091/journal/${username}`);
+            if (!res.ok) {
+                alert("User not found or no entries.");
+                return;
+            }
+            const data = await res.json();
+            const section = document.getElementById('entries');
+            section.innerHTML = data.map(e => `
+                <article>
+                  <h3>${e.title}</h3>
+                  <p>${e.content}</p>
+                  <footer>Author: ${e.author}</footer>
+                </article>`).join('');
+        } catch (error) {
+            alert("Failed to load entries");
+        }
+    }
+</script>
+</body>
+</html>
