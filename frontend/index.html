@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Journal</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+  <script>
+    async function fetchEntries() {
+      const username = document.getElementById("username").value;
+      const res = await fetch(`/journal/${username}`);
+      const entries = await res.json();
+      const list = document.getElementById("entries");
+      list.innerHTML = "";
+      entries.forEach(entry => {
+        list.innerHTML += `
+          <article>
+            <h3>${entry.title}</h3>
+            <p>${entry.content}</p>
+            <footer>Author: ${username}</footer>
+          </article>`;
+      });
+    }
+  </script>
+</head>
+<body>
+  <main class="container">
+    <h1>📒 My Journal</h1>
+    <label for="username">Enter your username</label>
+    <input type="text" id="username" placeholder="e.g. john_doe" />
+    <button onclick="fetchEntries()">Load My Journals</button>
+    <section id="entries"></section>
+    <footer>
+      <a href="create.html">➕ Add New Entry</a>
+    </footer>
+  </main>
+</body>
+</html>
