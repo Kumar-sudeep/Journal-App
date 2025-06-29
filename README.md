@@ -28,17 +28,60 @@ A full-stack Journal Web Application built using **Spring Boot (Java)** for the 
 ## 📁 Project Structure
 
 ```
-journal-app/
-├── backend/
-│   └── src/main/java/com/example/journal/
-│       ├── controller/
-│       ├── model/
-│       ├── repository/
-│       ├── service/
-│       └── JournalApplication.java
-├── resources/
-│   ├── static/           # HTML/CSS/JS frontend
-│   └── application.properties
+├── .gitattributes
+├── .gitignore
+├── .idea/
+│   ├── .gitignore
+│   ├── compiler.xml
+│   ├── encodings.xml
+│   ├── jarRepositories.xml
+│   ├── misc.xml
+│   ├── workspace.xml
+├── .mvn/
+│   └── wrapper/
+│       └── maven-wrapper.properties
+├── HELP.md
+├── LICENSE
+├── README.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── net/
+│   │   │       └── edigest/
+│   │   │           └── journalApp/
+│   │   │               ├── JournalApplication.java
+│   │   │               ├── controller/
+│   │   │               │   ├── HealthCheck.java
+│   │   │               │   ├── JournalEntryControllerV2.java
+│   │   │               │   └── UserController.java
+│   │   │               ├── entity/
+│   │   │               │   ├── JournalEntry.java
+│   │   │               │   └── User.java
+│   │   │               ├── repository/
+│   │   │               │   ├── JournalEntryRepository.java
+│   │   │               │   └── UserRepository.java
+│   │   │               └── service/
+│   │   │                   ├── JournalEntryService.java
+│   │   │                   └── UserService.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── static/
+│   │       │   ├── create.html
+│   │       │   ├── edit.html
+│   │       │   └── index.html
+│   │       └── templates/
+│   └── test/
+│       └── java/
+│           └── net/
+│               └── edigest/
+│                   └── journalApp/
+│                       └── JournalAppApplicationTests.java
+├── target/
+    └── ... (compiled class files)
+
 ```
 
 ---
